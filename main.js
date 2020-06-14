@@ -41,7 +41,6 @@ async function createWindow() {
     mainWindow.webContents.openDevTools();
   } else {
     await loadURL(mainWindow);
-    mainWindow.webContents.openDevTools();
   }
 
   return mainWindow;
