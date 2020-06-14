@@ -2,7 +2,7 @@
   "name": "svelte-electron-starter",
   "version": "1.0.0",
   "scripts": {
-    "start": "concurrently \"electron .\" \"snowpack dev --open none\"",
+    "start": "concurrently \"snowpack dev --open none\" \"electron .\"",
     "build": "snowpack build && electron-builder -mwl",
     "build:unpacked": "snowpack build && electron-builder --dir",
     "test": "jest",
@@ -40,6 +40,7 @@
     "electron": "^9.0.4",
     "electron-builder": "^22.7.0",
     "jest": "^25.4.0",
-    "snowpack": "^2.5.0"
+    "snowpack": "^2.5.0",
+    "wait-port": "^0.2.9"
   }
 }

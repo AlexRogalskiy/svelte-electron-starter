@@ -2,8 +2,32 @@
 const { app, BrowserWindow } = require("electron");
 const isDev = require("electron-is-dev");
 const serve = require("electron-serve");
+const waitPort = require("wait-port");
 
 const loadURL = serve({ directory: "./build" });
+
+async function createWindow() {
+  // Create the browser window.
+  const mainWindow = new BrowserWindow({
+    width: 800,
+    height: 600,
+    webPreferences: {
+      nodeIntegration: true,
+    },
+  });
+
+  mainWindow.removeMenu();
+
+  if (isDev) {
+    await waitPort({ target: "localhost", port: 8080 });
+    mainWindow.loadURL("http://localhost:8080");
+    mainWindow.webContents.openDevTools();
+  } else {
+    await loadURL(mainWindow);
+  }
+
+  return mainWindow;
+}
 
 (async () => {
   await app.whenReady();
@@ -23,25 +47,3 @@ const loadURL = serve({ directory: "./build" });
     if (process.platform !== "darwin") app.quit();
   });
 })();
-
-async function createWindow() {
-  // Create the browser window.
-  const mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
-    webPreferences: {
-      nodeIntegration: true,
-    },
-  });
-
-  mainWindow.removeMenu();
-
-  if (isDev) {
-    mainWindow.loadURL("http://localhost:8080");
-    mainWindow.webContents.openDevTools();
-  } else {
-    await loadURL(mainWindow);
-  }
-
-  return mainWindow;
-}
