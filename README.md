@@ -1,13 +1,10 @@
-# New Project
-
-> ✨ Bootstrapped with Create Snowpack App (CSA).
+A starter project for creating an Electron app using Svelte.
 
 ## Available Scripts
 
 ### npm start
 
 Runs the app in the development mode.
-Open http://localhost:8080 to view it in the browser.
 
 The page will reload if you make edits.
 You will also see any lint errors in the console.
@@ -19,11 +16,8 @@ See the section about running tests for more information.
 
 ### npm run build
 
-Builds a static copy of your site to the `build/` folder.
-Your app is ready to be deployed!
+Builds packed apps for Mac, Windows and Linux
 
-**For the best production performance:** Add a build bundler plugin like "@snowpack/plugin-webpack" or "@snowpack/plugin-parcel" to your `snowpack.config.json` config file.
+### npm run build:unpacked
 
-### Q: What about Eject?
-
-No eject needed! Snowpack guarantees zero lock-in, and CSA strives for the same.
+Builds an unpacked app for your OS. Useful for testing.

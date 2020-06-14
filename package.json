@@ -1,16 +1,44 @@
 {
+  "name": "svelte-electron-starter",
+  "version": "1.0.0",
   "scripts": {
-    "start": "snowpack dev",
-    "build": "snowpack build",
-    "test": "jest"
+    "start": "concurrently \"electron .\" \"snowpack dev --open none\"",
+    "build": "snowpack build && electron-builder -mwl",
+    "build:unpacked": "snowpack build && electron-builder --dir",
+    "test": "jest",
+    "postinstall": "electron-builder install-app-deps"
+  },
+  "main": "main.js",
+  "build": {
+    "appId": "com.mattjennings.svelte-electron-starter",
+    "extends": null,
+    "productName": "Svelte Electron Starter",
+    "win": {
+      "target": [
+        "portable"
+      ]
+    },
+    "mac": {
+      "category": "your.app.category.type"
+    },
+    "files": [
+      "main.js",
+      "build"
+    ]
   },
   "dependencies": {
+    "electron-is-dev": "^1.2.0",
+    "electron-serve": "^1.0.0",
     "svelte": "^3.21.0"
   },
   "devDependencies": {
     "@snowpack/app-scripts-svelte": "^1.2.0",
+    "@snowpack/plugin-webpack": "^1.2.0",
     "@testing-library/jest-dom": "^5.5.0",
     "@testing-library/svelte": "^3.0.0",
+    "concurrently": "^5.2.0",
+    "electron": "^9.0.4",
+    "electron-builder": "^22.7.0",
     "jest": "^25.4.0",
     "snowpack": "^2.5.0"
   }
