@@ -36,16 +36,13 @@ async function createWindow() {
 
   mainWindow.removeMenu();
 
-  await loadURL(mainWindow);
-  mainWindow.webContents.openDevTools();
-
-  // if (isDev) {
-  //   mainWindow.loadURL("http://localhost:8080");
-  //   mainWindow.webContents.openDevTools();
-  // } else {
-  //   await loadURL(mainWindow);
-  //   mainWindow.webContents.openDevTools();
-  // }
+  if (isDev) {
+    mainWindow.loadURL("http://localhost:8080");
+    mainWindow.webContents.openDevTools();
+  } else {
+    await loadURL(mainWindow);
+    mainWindow.webContents.openDevTools();
+  }
 
   return mainWindow;
 }
